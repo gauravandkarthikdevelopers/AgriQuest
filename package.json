@@ -1,0 +1,19 @@
+{
+  "name": "agriquest",
+  "version": "1.0.0",
+  "description": "AgriQuest - Gamified Sustainable Farming Education Platform",
+  "main": "index.js",
+  "scripts": {
+    "dev:backend": "cd server && npm run dev",
+    "dev:frontend": "cd frontend && expo start",
+    "build": "cd server && npm run build",
+    "test": "cd server && npm test && cd ../frontend && npm test",
+    "lint": "cd server && npm run lint && cd ../frontend && npm run lint",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "seed": "cd server && npm run seed"
+  },
+  "keywords": ["agriculture", "sustainability", "gamification", "education"],
+  "author": "AgriQuest Team",
+  "license": "MIT"
+}
