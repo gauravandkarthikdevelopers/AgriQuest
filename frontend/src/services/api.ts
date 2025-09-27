@@ -54,7 +54,9 @@ class ApiService {
         } else if (error.response?.status >= 500) {
           throw new Error('Server error. Please try again later.');
         } else if (error.code === 'NETWORK_ERROR' || !error.response) {
-          throw new Error('Network error. Please check your connection.');
+          console.log('Network error details:', error);
+          console.log('API Base URL:', API_BASE_URL);
+          throw new Error('Network error. Please check your connection and ensure backend is running.');
         }
         
         throw new Error(error.response?.data?.error || 'An error occurred');
@@ -280,11 +282,30 @@ class ApiService {
   // Utility method to check if API is available
   async isApiAvailable(): Promise<boolean> {
     try {
-      await this.healthCheck();
+      console.log('Testing API connection to:', API_BASE_URL);
+      const response = await this.healthCheck();
+      console.log('API connection successful:', response);
       return true;
     } catch (error) {
       console.error('API not available:', error);
+      console.error('API Base URL:', API_BASE_URL);
       return false;
+    }
+  }
+
+  // Simple connection test
+  async testConnection(): Promise<{ success: boolean; message: string }> {
+    try {
+      const response = await this.api.get('/health');
+      return {
+        success: true,
+        message: `Connected to AgriQuest API v${response.data.data?.version || '1.0.0'}`
+      };
+    } catch (error: any) {
+      return {
+        success: false,
+        message: `Connection failed: ${error.message}`
+      };
     }
   }
 }

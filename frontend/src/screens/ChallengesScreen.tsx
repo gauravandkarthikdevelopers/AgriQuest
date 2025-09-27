@@ -27,7 +27,7 @@ const ChallengesScreen: React.FC<ChallengesScreenProps> = ({ navigation }) => {
 
   const loadChallenges = async () => {
     try {
-      const result = await apiService.getChallenges();
+      const result = await apiService.getChallenges({ limit: 100 });
       setChallenges(result.challenges);
     } catch (error) {
       console.error('Error loading challenges:', error);

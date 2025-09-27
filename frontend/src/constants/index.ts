@@ -5,7 +5,7 @@ export const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('wi
 
 // API Configuration
 export const API_BASE_URL = __DEV__ 
-  ? 'http://localhost:3000/api/v1' 
+  ? 'http://172.20.10.3:3000/api/v1' 
   : 'https://your-production-api.com/api/v1';
 
 // Colors - AgriQuest Theme (Based on your designs)
